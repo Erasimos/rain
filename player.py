@@ -63,7 +63,7 @@ def play_rain():
         label.config(image=img)
         label.image = img
 
-        root.after(10, update_frame)
+        root.after(50, update_frame)
     
     update_frame()
     root.mainloop()
