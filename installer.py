@@ -1,12 +1,27 @@
 import os
 import sys
 import platform
+import subprocess
+
+def install_dependencies():
+    """Install the dependencies from requirements.txt."""
+    try:
+        print("Installing dependencies...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+        print("Dependencies installed successfully!")
+    except subprocess.CalledProcessError:
+        print("Error installing dependencies. Please check your environment and try again.")
+        sys.exit(1)
+
+
 
 def install():
     """Set up the 'rain' command."""
     project_dir = os.path.dirname(os.path.abspath(__file__))
     player_path = os.path.join(project_dir, "player.py")
     system = platform.system()
+
+    install_dependencies()
 
     if system == "Windows":
         install_windows(player_path)
