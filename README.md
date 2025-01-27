@@ -8,4 +8,4 @@ install the rain application by running the installer.py script with "install" a
 run "rain" in terminal to open the rain window
 
 ## Screenshot of the Application
-![Rain](assets/screenshot.png)
+![Rain](resources/screenshot.png)
