@@ -50,8 +50,12 @@ def install_unix(player_path):
     """Create a symbolic link in /usr/local/bin or add to PATH on Unix-based systems."""
     link_path = "/usr/local/bin/rain"
     try:
+        if os.path.exists(link_path):
+            print(f"{link_path} already exists. Removing the old link...")
+            os.remove(link_path)
+
         os.symlink(player_path, link_path)
-        os.chmod(player_path, 0o755)  # Ensure the script is executable
+        os.chmod(player_path, 0o755)
         print(f"Created symbolic link: {link_path}")
         print("Installation complete! You can now use 'rain' from the terminal.")
     except PermissionError:
@@ -62,7 +66,6 @@ def install_unix(player_path):
         os.remove(link_path)
         os.symlink(player_path, link_path)
         print(f"Symbolic link updated: {link_path}")
-
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "install":
