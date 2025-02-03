@@ -1,18 +1,26 @@
 import os
 import cv2
+import sys
 import pygame
 from tkinter import Tk, Label, Scale, HORIZONTAL
 from PIL import Image, ImageTk
 
+def get_resource_path(relative_path):
+    """Returns the absolute path to the resource."""
+    if getattr(sys, 'frozen', False):  # When running as an exe
+        base_path = sys._MEIPASS
+    else:  # When running in the development environment
+        base_path = os.path.dirname(__file__)
+    return os.path.join(base_path, relative_path)
 
 
 def play_rain():
     pygame.init()
     pygame.mixer.init()
 
-    project_dir = os.path.dirname(__file__)
-    video_path = os.path.join(project_dir, "resources", "rain.mp4")
-    audio_path = os.path.join(project_dir, "resources", "rain.mp3")
+    video_path = get_resource_path("resources/rain.mp4")
+    audio_path = get_resource_path("resources/rain.mp3")
+    icon_path = get_resource_path("resources/rain.ico")
 
     pygame.mixer.music.load(audio_path)
     pygame.mixer.music.play(-1) # -1 for infinite looping
@@ -20,7 +28,7 @@ def play_rain():
 
     root = Tk()
     root.title("Rain")
-
+    root.iconbitmap(icon_path)
     root.geometry("400x400")
 
     label = Label(root, bg="Black")
