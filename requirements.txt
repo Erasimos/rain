@@ -3,3 +3,4 @@ opencv-python==4.11.0.86
 packaging==24.1
 pillow==10.4.0
 pygame==2.6.0
+pyinstaller==6.12.0
